@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Add Player Form</title>
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			margin: 0;
+			padding: 0;
+		}
+		form {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			margin-top: 20px;
+            width: 50%;
+            padding: 20px;
+            border: 1px solid;
+            box-shadow: 0 10px 10px rgba(0,0,0,0.5);
+		}
+		label {
+			margin-right: 10px;
+			font-weight: bold;
+			font-size: 18px;
+			color: #333;
+			display: inline-block;
+			width: 150px;
+			text-align: right;
+		}
+		input[type="text"] {
+			padding: 10px;
+			margin-bottom: 20px;
+			border-radius: 5px;
+			border: none;
+			box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+			width: 300px;
+			font-size: 16px;
+		}
+		button {
+			background-color: black;
+			color: #fff;
+			border: none;
+			border-radius: 5px;
+			padding: 10px 20px;
+			font-size: 16px;
+			cursor: pointer;
+			margin-right: 10px;
+		}
+
+        .add{
+            margin-right: 100px;
+        }
+		button:hover {
+			background-color: #3e8e41;
+		}
+		table {
+			margin-top: 50px;
+			border-collapse: collapse;
+			width: 50%;
+			margin-left: auto;
+			margin-right: auto;
+			box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+		}
+		th, td {
+			text-align: center;
+			padding: 10px;
+			border-bottom: 1px solid #ddd;
+		}
+		th {
+			background-color: black;
+			color: #fff;
+		}
+		tr:hover {
+			background-color: #f5f5f5;
+		}
+		.delete {
+			color: red;
+			cursor: pointer;
+		}
+		.delete:hover {
+			text-decoration: underline;
+		}
+	</style>
+</head>
+<body>
+        <center>
+            <br>
+            <br>
+            <h2>Player Detalis Form</h2>
+            <form onsubmit="return false">
+                <div>
+                    <label for="pid">Player Id:</label>
+                    <input type="text" name="pid" id="pid">
+                </div>
+                <div>
+                    <label for="pname">Player Name:</label>
+                    <input type="text" name="pname" id="pname">
+                </div>
+                <div>
+        
+                    <label for="runs">Runs:</label>
+                    <input type="text" name="runs" id="runs">
+                </div>
+                <div>
+                    <button onclick="addPlayer(event)" class="add">Add Player</button> 
+                    <button onclick="removePlayer()" class="remove">Remove Player</button>
+                </div>
+            </form>
+        </center>
+	<table border="2" id="tdata">
+		<thead>
+			<tr>
+				<th>Player Id</th>
+				<th>Player Name</th>
+				<th>Runs</th>
+				<th>Select</th>
+			</tr>
+		</thead>
+		<tbody>
+		</tbody>
+	</table>
+
+	<script>
+        function addPlayer(e) {
+            e.preventDefault();
+            let id = document.getElementById("pid").value;
+            let name = document.getElementById("pname").value;
+            let runs = document.getElementById("runs").value;
+            let tableBody = document.getElementById("tdata");
+
+            let newRow = tableBody.insertRow();
+            let nameCell = newRow.insertCell(0);
+            let nameCell1 = newRow.insertCell(1);
+            let nameCell2 = newRow.insertCell(2);
+            let nameCell3 = newRow.insertCell(3);
+
+            nameCell.innerHTML = id;
+            nameCell1.innerHTML = name;
+            nameCell2.innerHTML = runs;
+            nameCell3.innerHTML = '<input type=checkbox value=id />'
+        }
+        function removePlayer()
+        {
+            var table = document.getElementById("tdata")
+        
+            for(var i = 1; i <table.rows.length; i++){
+
+            var checkbox = table.rows[i].querySelector("input[type=checkbox]");
+
+            if(checkbox.checked){
+                table.deleteRow(i);
+                i--;
+            }
+
+            // // Get a reference to the table element
+            // var table = document.getElementById("tdata");
+
+            // // Get a reference to the last row in the table
+            // var lastRow = table.rows[table.rows.length - 1];
+
+            //     // Remove the last row from the table
+            //     table.deleteRow(lastRow.rowIndex);
+        }
+        
+    }
+    </script>
+    </body>
+    </html>
